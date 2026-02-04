@@ -1,0 +1,16 @@
+# Ignore all logfiles and databases
+*.log
+*.pot
+*.pyc
+*.sqlite3
+
+# Ignore the staticfiles
+staticfiles
+
+Pipfile.lock
+.DS_Store
+
+# ignore temp
+temp
+temp.*
+.venv
