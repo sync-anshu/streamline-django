@@ -14,3 +14,5 @@ Pipfile.lock
 temp
 temp.*
 .venv
+
+.env
