@@ -1,3 +1,16 @@
+annotated-types==0.7.0
 asgiref==3.11.1
+certifi==2026.1.4
+charset-normalizer==3.4.4
 django==6.0.2
+djangorestframework==3.16.1
+idna==3.11
+inflection==0.5.1
+pyairtable==3.3.0
+pydantic==2.12.5
+pydantic-core==2.41.5
+requests==2.32.5
 sqlparse==0.5.5
+typing-extensions==4.15.0
+typing-inspection==0.4.2
+urllib3==2.6.3
