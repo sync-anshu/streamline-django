@@ -41,9 +41,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #rest framework
     'rest_framework',
+    #simplejwt
+    'rest_framework_simplejwt',
     #apps
     'accounts',
+    
+
 ]
 
 MIDDLEWARE = [
@@ -133,3 +138,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #airtable API Key
 AIRTABLE_API_KEY = os.getenv('AIRTABLE_API_KEY')
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
