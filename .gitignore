@@ -15,4 +15,5 @@ temp
 temp.*
 .venv
 
+# ignore env file
 .env
