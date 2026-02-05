@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     #apps
     'accounts',
+    'api',
     
 
 ]
@@ -149,6 +150,6 @@ AIRTABLE_API_KEY = os.getenv('AIRTABLE_API_KEY')
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+       'api.authentication.CustomJWTAuthentication',
     ],
 }
