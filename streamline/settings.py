@@ -111,6 +111,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+#Custom user model 
+AUTH_USER_MODEL = 'accounts.AirTableUser'
+
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
