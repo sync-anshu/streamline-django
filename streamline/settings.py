@@ -114,7 +114,11 @@ AUTH_PASSWORD_VALIDATORS = [
 #Custom user model 
 AUTH_USER_MODEL = 'accounts.AirTableUser'
 
-
+#Custom authentication backend
+AUTHENTICATION_BACKENDS = [
+    'accounts.backends.AirTableBackend',
+    'django.contrib.auth.backends.ModelBackend',#keep the default django authentication backend
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
