@@ -20,7 +20,7 @@ class CustomTokenObtainPairView(TokenObtainPairView):
                 value=access,
                 domain="domain.streamline.com" if not settings.DEBUG else None,
                 path="/",
-                max_age= 60 * 5,
+                max_age= 60 * 5, #5 minutes
                 httponly=True,
                 secure=True,
                 samesite="Lax"

@@ -47,8 +47,11 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     #apps
     'accounts',
+    #api
     'api',
-    
+    #drf spectacular 
+    'drf_spectacular',
+
 
 ]
 
@@ -152,4 +155,14 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
        'api.authentication.CustomJWTAuthentication',
     ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Streamline API',
+    'DESCRIPTION': 'Streamline API Documentation',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
 }
