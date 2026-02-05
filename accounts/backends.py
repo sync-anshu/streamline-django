@@ -1,8 +1,9 @@
-from django.contrib.auth.backends import BaseBackend, UserModel
-from django.contrib.auth import  get_user_model
-from django.contrib.auth.models import User
+from django.conf import settings
+from django.contrib.auth.backends import BaseBackend
+from django.contrib.auth import get_user_model
+from pyairtable import Api
 
-
+api = Api(settings.AIRTABLE_API_KEY)
 class AirTableBackend(BaseBackend):
     """
     Authenticate against the AirTable API.
@@ -15,11 +16,32 @@ class AirTableBackend(BaseBackend):
         If they’re not valid, it should return None.
         """
         try:
-            print("Authenticating user with email: ", username)
-            print("Password: ", password)
+            #SHM - get all accounts from airtable
+            accounts_table = api.table('appvOFmpLj8ZNNGPR', 'tbl25IPMcnCR5bOIR')  
+            accounts = accounts_table.all()
 
+            found = False
+            allow_access = False
+
+            for account in accounts:
+                #
+                fields = account.get('fields',{})
+                if fields.get('Email (from Account Owner)')[-1] == username:
+                    allow_access = fields.get('Allow Access')
+                    if not allow_access:
+                        return None
+
+                    found = True
+                    break
+
+            if not found:
+                return None
+
+            #if the user is not found, return None
             UserModel = get_user_model()
+
             user = UserModel.objects.get(email=username)
+
             if user.check_password(password):
                 return user
             
