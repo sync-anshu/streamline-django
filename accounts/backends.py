@@ -2,6 +2,7 @@ from django.conf import settings
 from django.contrib.auth.backends import BaseBackend
 from django.contrib.auth import get_user_model
 from pyairtable import Api
+from accounts.utils import match_airtable_user
 
 api = Api(settings.AIRTABLE_API_KEY)
 class AirTableBackend(BaseBackend):
@@ -17,24 +18,9 @@ class AirTableBackend(BaseBackend):
         """
         try:
             #SHM - get all accounts from airtable
-            accounts_table = api.table('appvOFmpLj8ZNNGPR', 'tbl25IPMcnCR5bOIR')  
-            accounts = accounts_table.all()
+            found, allow_access = match_airtable_user(username)
 
-            found = False
-            allow_access = False
-
-            for account in accounts:
-                #
-                fields = account.get('fields',{})
-                if fields.get('Email (from Account Owner)')[-1] == username:
-                    allow_access = fields.get('Allow Access')
-                    if not allow_access:
-                        return None
-
-                    found = True
-                    break
-
-            if not found:
+            if not found or not allow_access:
                 return None
 
             #if the user is not found, return None
